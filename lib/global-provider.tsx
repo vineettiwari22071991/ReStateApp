@@ -35,6 +35,7 @@ export const GlobalProvider = ({ children }: GlobalProviderProps) => {
 
   const isLogged = !!user;
 
+
   return (
     <GlobalContext.Provider
       value={{
