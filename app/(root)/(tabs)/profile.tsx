@@ -1,6 +1,8 @@
 import { settings } from "@/constants/data";
 import icons from "@/constants/icons"
 import images from "@/constants/images"
+import { logout } from "@/lib/appwrite";
+import { useGlobalContext } from "@/lib/global-provider";
 import { Image, ImageSourcePropType, ScrollView, Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
@@ -41,8 +43,9 @@ const SettingItem = ({ icon, title, onPress, textStyle, showArrow }: SettingItem
 
 const ProfileScreen = () => {
 
+    const {user} = useGlobalContext()
     const handleLogout = async ()=>{
-        console.log("Logout")
+       logout()
     }
     return (
         <SafeAreaView className="h-full bg-white">
@@ -63,7 +66,7 @@ const ProfileScreen = () => {
                 </View>
                 <View className="flex flex-col justify-center items-center">
                     <Image
-                        source={images.avatar}
+                        source={{uri: user?.avatar}}
                         className="size-40 rounded-full"
                     />
                     <View>
@@ -73,7 +76,7 @@ const ProfileScreen = () => {
                                 className="size-9"
                             />
                         </TouchableOpacity>
-                        <Text className="text-2xl font-rubik-bold mt-">Adam | JSM</Text>
+                        <Text className="text-2xl font-rubik-bold mt-">{user?.name}</Text>
                     </View>
                 </View>
                 <View className="flex flex-col mt-10">

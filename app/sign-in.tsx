@@ -10,7 +10,7 @@ const SignIn = () => {
 
   const {refetch, loading, isLogged} = useGlobalContext()
 
-  if (!loading && isLogged) return <Redirect href="/(root)/(tabs)" />;
+  if (!loading && isLogged) return <Redirect href="/" />;
   const handleLogin = async () => {
     const result = await login();
     if (result) {
